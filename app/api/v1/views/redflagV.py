@@ -39,3 +39,12 @@ class Redflag(Resource):
         # new_flag['id'] = len(redflags) + 1
         redflags.append(new_flag)
         return {'output': 'Redflag is added'}, 201
+
+@incident_namespace.route('/redflags/<int:id>')
+class Redflags(Resource):
+
+    @incident_namespace.doc()
+    def get(self, id):
+        for redflag in redflags:
+            if redflag['id'] == id:
+                return {'redflag': 'Redflag fetched'},200
