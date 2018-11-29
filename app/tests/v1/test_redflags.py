@@ -45,3 +45,8 @@ def test_get(client):
     assert 1 == len(res_obj)
     assert [redflags[0]] == res_obj
     assert red_get.status_code == 200
+
+def test_get_by_id(client):
+    red_get = client.get('/api/v1/redflags/1')
+    assert b'Redflag fetched' in red_get.data
+    assert red_get.status_code == 200
