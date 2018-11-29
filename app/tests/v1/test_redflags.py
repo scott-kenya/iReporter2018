@@ -50,3 +50,10 @@ def test_get_by_id(client):
     red_get = client.get('/api/v1/redflags/1')
     assert b'Redflag fetched' in red_get.data
     assert red_get.status_code == 200
+
+
+def test_update_redflags(client):
+    red_post = client.put('/api/v1/redflags/1', data = updates_redflag,
+                          content_type='application/json')
+    assert b'Redflag updated' in red_post.data
+    assert red_post.status_code == 201
