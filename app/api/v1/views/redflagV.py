@@ -48,3 +48,11 @@ class Redflags(Resource):
         for redflag in redflags:
             if redflag['id'] == id:
                 return {'redflag': 'Redflag fetched'},200
+
+    @incident_namespace.expect(flag_update)
+    def put(self, id):
+        up = incident_namespace.payload
+        for redflag in redflags:
+             if redflag['id'] == id:
+                 redflag.update(up)
+                 return {"message":"Redflag updated"}, 201
