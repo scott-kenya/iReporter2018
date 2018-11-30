@@ -32,3 +32,10 @@ class Redflag(Resource):
 
     def get(self):
         return redflags, 200
+
+    @incident_namespace.expect(flag_model)
+    def post(self):
+        new_flag = incident_namespace.payload
+        # new_flag['id'] = len(redflags) + 1
+        redflags.append(new_flag)
+        return {'output': 'Redflag is added'}, 201
