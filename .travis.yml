@@ -6,6 +6,7 @@ install:
   - pip install pytest-cov
   - pip install coveralls
   - pip install flask
+  - pip install flask_restplus
 
 
 before_script:
