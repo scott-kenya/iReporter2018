@@ -56,3 +56,10 @@ class Redflags(Resource):
              if redflag['id'] == id:
                  redflag.update(up)
                  return {"message":"Redflag updated"}, 201
+
+    def delete(self, id):
+        for redflag in redflags:
+            if redflag['id'] == id:
+                redflags.remove(redflag)
+                return {'Message': 'Redflag Deleted'},  204
+
