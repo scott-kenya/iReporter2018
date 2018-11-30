@@ -7,7 +7,7 @@ enum34==1.1.6
 Flask==1.0.2
 Flask-RESTful==0.3.6
 flask-restplus==0.12.1
-funcsigs==1.0.2
+
 functools32==3.2.3.post2
 gunicorn==19.9.0
 itsdangerous==1.1.0
@@ -16,7 +16,7 @@ jsonschema==2.6.0
 MarkupSafe==1.1.0
 more-itertools==4.3.0
 pathlib2==2.3.3
-pkg-resources==0.0.0
+
 pluggy==0.8.0
 py==1.7.0
 pytest==4.0.1
