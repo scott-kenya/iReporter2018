@@ -57,3 +57,8 @@ def test_update_redflags(client):
                           content_type='application/json')
     assert b'Redflag updated' in red_post.data
     assert red_post.status_code == 201
+
+def test_delete_redflag(client):
+    red_delete = client.delete('/api/v1/redflags/1')
+    assert red_delete.status_code == 204
+        
