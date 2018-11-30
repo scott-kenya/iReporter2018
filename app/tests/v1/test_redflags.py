@@ -38,3 +38,10 @@ def test_post(client):
                        content_type='application/json')
 	assert b'Redflag is added' in red_post.data
 	assert red_post.status_code == 201
+
+def test_get(client):
+    red_get = client.get('/api/v1/redflags')
+    res_obj = json.loads(red_get.data.decode())
+    assert 1 == len(res_obj)
+    assert [redflags[0]] == res_obj
+    assert red_get.status_code == 200
