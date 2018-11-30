@@ -1,4 +1,5 @@
 
-# iReporter2018
+# iReporter Application
 
-[![Coverage Status](https://coveralls.io/repos/github/scott-kenya/iReporter2018/badge.svg?branch=master)](https://coveralls.io/github/scott-kenya/iReporter2018?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/scott-kenya/iReporter2018/badge.svg?branch=develop)](https://coveralls.io/github/scott-kenya/iReporter2018?branch=develop)
+[![Build Status](https://travis-ci.com/scott-kenya/iReporter2018.svg?branch=develop)](https://travis-ci.com/scott-kenya/iReporter2018)
