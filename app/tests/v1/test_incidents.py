@@ -1,27 +1,24 @@
 import pytest
 import json
 from ... import create_app
-from app.api.v1.models.redflagM import redflags
+from app.api.v1.models.incidentsM import incidents
 
 app = create_app()
 
 
-redflag = json.dumps(
+incidents = json.dumps(
 		{
                         "Title": "Broken bridge.", 
-                        "createdOn" : "12/12/2018",
-                        "createdBy" : "Scott francis",
                         "type" : "red flag",
                         "location" : "N39-098 S09-234",
                         "status" : "Rejected",
                         "images" : "red.jpg",
                         "videos" : "red.mpeg",
-                        "comment" : "This is a comment",
-                         "id" : 1
+                        "comment" : "This is a comment"
             }
 		)
 
-updates_redflag = json.dumps({
+updates_incident = json.dumps({
 	"status":"Rejected"
 	})
 
@@ -34,31 +31,31 @@ def client():
 	
 
 def test_post(client):
-	red_post = client.post('/api/v1/redflags', data= redflag,
+	red_post = client.post('/api/v1/incidents', data= incident,
                        content_type='application/json')
-	assert b'Redflag is added' in red_post.data
+	assert b'Incidents is added' in red_post.data
 	assert red_post.status_code == 201
 
 def test_get(client):
-    red_get = client.get('/api/v1/redflags')
+    red_get = client.get('/api/v1/incidents')
     res_obj = json.loads(red_get.data.decode())
     assert 1 == len(res_obj)
-    assert [redflags[0]] == res_obj
+    assert [incidents[0]] == res_obj
     assert red_get.status_code == 200
 
 def test_get_by_id(client):
-    red_get = client.get('/api/v1/redflags/1')
-    assert b'Redflag fetched' in red_get.data
+    red_get = client.get('/api/v1/incidents/1')
+    assert b'Incident fetched' in red_get.data
     assert red_get.status_code == 200
 
 
-def test_update_redflags(client):
-    red_post = client.put('/api/v1/redflags/1', data = updates_redflag,
+def test_update_incidents(client):
+    red_post = client.put('/api/v1/incidents/1', data = updates_redflag,
                           content_type='application/json')
-    assert b'Redflag updated' in red_post.data
+    assert b'Incidents updated' in red_post.data
     assert red_post.status_code == 201
 
-def test_delete_redflag(client):
-    red_delete = client.delete('/api/v1/redflags/1')
+def test_delete_incidents(client):
+    red_delete = client.delete('/api/v1/incidents/1')
     assert red_delete.status_code == 204
         

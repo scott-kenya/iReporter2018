@@ -2,11 +2,11 @@ from flask import Flask
 from flask_restplus import Namespace, fields
 
 
-redflags = []
+incidents = []
 
-incident_namespace = Namespace('Redflag', description='Redflags v1 Endpoint')
+incident_namespace = Namespace('Incident', description='incidents v1 Endpoint')
 
-flag_model = incident_namespace.model('Redflag',{
+flag_model = incident_namespace.model('Incident',{
 
                     'id': fields.Integer(required=True),
                     'title': fields.String(required=True),
@@ -23,6 +23,6 @@ flag_model = incident_namespace.model('Redflag',{
 
 
 
-flag_update = incident_namespace.model('Redflag Update', {
+flag_update = incident_namespace.model('Incident Update', {
    'status': fields.String
 })
