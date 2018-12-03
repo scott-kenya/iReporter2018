@@ -6,7 +6,7 @@ incidents = []
 
 incident_namespace = Namespace('Incident', description='incidents v1 Endpoint')
 
-flag_model = incident_namespace.model('Incident',{
+incident_model = incident_namespace.model('Incident',{
 
                     'id': fields.Integer(required=True),
                     'title': fields.String(required=True),
@@ -23,6 +23,6 @@ flag_model = incident_namespace.model('Incident',{
 
 
 
-flag_update = incident_namespace.model('Incident Update', {
+incident_update = incident_namespace.model('Incident Update', {
    'status': fields.String
 })

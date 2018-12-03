@@ -4,7 +4,7 @@ from flask_restplus import Resource, Namespace, fields
 from app.api.v1.models.incidentsM import incidents
 from app.api.v1.models.incidentsM import  incidents
 
-from app.api.v1.models.incidentsM import incidents, incident_namespace, flag_model, flag_update
+from app.api.v1.models.incidentsM import incidents, incident_namespace, incident_model, incident_update
 
 
 
@@ -14,7 +14,7 @@ class Incident(Resource):
     def get(self):
         return incidents, 200
 
-    @incident_namespace.expect(flag_model)
+    @incident_namespace.expect(incident_model)
     def post(self):
         new_flag = incident_namespace.payload
         # new_flag['id'] = len(incidents) + 1
@@ -26,16 +26,16 @@ class Incidents(Resource):
 
     @incident_namespace.doc()
     def get(self, id):
-        for incidents in incidents:
-            if incidents['id'] == id:
+        for incident in incidents:
+            if incident['id'] == id:
                 return {'incidents': 'Incident fetched'},200
 
-    @incident_namespace.expect(flag_update)
+    @incident_namespace.expect(incident_update)
     def put(self, id):
         up = incident_namespace.payload
-        for incidents in incidents:
-             if incidents['id'] == id:
-                 incidents.update(up)
+        for incident in incidents:
+             if incident['id'] == id:
+                 incident.update(up)
                  return {"message":"Incident updated"}, 201
 
     def delete(self, id):

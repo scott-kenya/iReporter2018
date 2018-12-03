@@ -9,12 +9,15 @@ app = create_app()
 incidents = json.dumps(
 		{
                         "Title": "Broken bridge.", 
+                        "createdOn" : "12/12/2018",
+                        "createdBy" : "Scott francis",
                         "type" : "red flag",
                         "location" : "N39-098 S09-234",
                         "status" : "Rejected",
                         "images" : "red.jpg",
                         "videos" : "red.mpeg",
-                        "comment" : "This is a comment"
+                        "comment" : "This is a comment",
+                         "id" : 1
             }
 		)
 
@@ -40,7 +43,7 @@ def test_get(client):
     red_get = client.get('/api/v1/incidents')
     res_obj = json.loads(red_get.data.decode())
     assert 1 == len(res_obj)
-    assert [incidents[0]] == res_obj
+    assert json.loads(incidents) == res_obj[0]
     assert red_get.status_code == 200
 
 def test_get_by_id(client):
@@ -52,7 +55,7 @@ def test_get_by_id(client):
 def test_update_incidents(client):
     red_post = client.put('/api/v1/incidents/1', data = updates_incident,
                           content_type='application/json')
-    assert b'Incidents updated' in red_post.data
+    assert b'Incident updated' in red_post.data
     assert red_post.status_code == 201
 
 def test_delete_incidents(client):
