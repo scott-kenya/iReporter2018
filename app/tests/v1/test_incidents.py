@@ -33,7 +33,7 @@ def client():
 def test_post(client):
 	red_post = client.post('/api/v1/incidents', data= incidents,
                        content_type='application/json')
-	assert b'Incidents is added' in red_post.data
+	assert b'Incident is added' in red_post.data
 	assert red_post.status_code == 201
 
 def test_get(client):
