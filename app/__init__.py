@@ -2,7 +2,16 @@ from flask import Flask, Blueprint
 from flask_restplus import Api, Resource
 
 from app.api.v1.views.incidentsV import incident_namespace
+from app.api.v1.views.users import users_namespace
 
+
+# authorizations = {
+#     'apikey' : {
+#     'type': 'apikey',
+#     'in': 'header',
+#     'name': 'MY-KEYS'
+#     }
+# }
 
 
 def create_app():
@@ -13,6 +22,7 @@ def create_app():
     
    
     api.add_namespace(incident_namespace, path='/api/v1')
+    api.add_namespace(users_namespace, path='/api/v1')
 
     
     return app
