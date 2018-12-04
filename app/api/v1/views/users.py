@@ -35,15 +35,15 @@ class Login(Resource):
 			return obj.check_user_input()
 
 
-# @users_namespace.route('/register')
-# class RegisterUser(Resource):
-# 	#@token_required
-# 	@users_namespace.doc(security='apikey')
-# 	@users_namespace.expect(model_register,validate=True)
-# 	def post(self):
-# 		data = request.get_json()
-# 		obj = UserAccounts(data)
-# 		if obj.check_register_input() == 1:
-# 			return [{'output': 'new user added'},data]
-# 		else:
-# 			return obj.check_register_input()
+@users_namespace.route('/register')
+class RegisterUser(Resource):
+	#@token_required
+	@users_namespace.doc(security='apikey')
+	@users_namespace.expect(model_register,validate=True)
+	def post(self):
+		data = request.get_json()
+		obj = UserAccounts(data)
+		if obj.check_register_input() == 1:
+			return [{'output': 'new user added'},data]
+		else:
+			return obj.check_register_input()
