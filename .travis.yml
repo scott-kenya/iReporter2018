@@ -8,6 +8,7 @@ install:
   - pip install flask
   - pip install flask_restplus
   - pip install JWT-extended
+  - pip install jwt
 
 
 
