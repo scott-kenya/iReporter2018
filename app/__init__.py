@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint
 from flask_restplus import Api, Resource
 
-from app.api.v1.views.redflagV import incident_namespace
+from app.api.v1.views.incidentsV import incident_namespace
 
 
 
