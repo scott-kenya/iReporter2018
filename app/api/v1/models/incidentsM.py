@@ -41,56 +41,45 @@ parser.add_argument('type',
 parser.add_argument('location',
                     type=str,
                     required=True,
-                    #location='incident_model',
+                    location='json',
                     help="This field cannot be left blank or Bad choice: {error_msg}"
                     )
 
 parser.add_argument('Title',
                     type=str,
-                    #required=True,
-                    location='incident_model',
+                    required=True,
+                    location='json',
                     help="This field cannot be left blank or Bad choice: {error_msg}"
                     )
 
 
+parser.add_argument('status',
+                    type=str,
+                    required=True,
+                    location='json',
+                    help="This field cannot be left blank or Bad choice: {error_msg}"
+                    )
 
-class Incidents(Verification):
-  def __init__(self,items):
-    self.items = Incident
 
-  def check_incident_post(self):
-    input=self.is_incident_payload(self.items) 
-    strings = [self.items['title'],self.items['type']]
-    keys = ['title', 'type']
-    if input is False:
-      return {'output':'invalid input'},406
-    elif self.is_empty(strings) is not False:
-      return {'output': 'data set {} is empty'.format(keys[self.is_empty(strings)])},406
-    elif self.is_whitespace(strings) is not False:
-      return {'output': 'data set {} contains only white space'.format(keys[self.is_whitespace(strings)])},406
-    else:
-      return 1
+parser.add_argument('comment',
+                    type=str,
+                    required=True,
+                    location='json',
+                    help="This field cannot be left blank or Bad choice: {error_msg}"
+                    )
 
-  def add_incident(self):
-    self.items['id'] = len(incidents)
-    for incident in incidents:
-      if incident['title'] == self.items['title']:
-        return {'output': 'An incident has be added'},201
-      # elif incident['title'] != self.items['title']:
-      #   return {'output':'invalid input'}
-    incidents.append(self.items)
-    #return {'output': 'product has added to database'},201
 
-  @classmethod
-  def get_all_incident_records(cls):
-    if len(incidents) == 0:
-      return {'output': 'no incidents found'},404
-    else:
-      return [{'message': 'all incidents'},incidents],200
+parser.add_argument('Videos',
+                    type=str,
+                    required=True,
+                    location='json',
+                    help="This field cannot be left blank or Bad choice: {error_msg}"
+                    )
 
-  @classmethod
-  def get_one_incident(cls, id):
-    if len(incidents) == 0:
-      return {'output': 'no incidents found'},404
-    else:
-      return incidents[id],200
+
+parser.add_argument('Images',
+                    type=str,
+                    required=True,
+                    location='json',
+                    help="This field cannot be left blank or Bad choice: {error_msg}"
+                    )
