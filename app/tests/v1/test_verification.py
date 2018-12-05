@@ -34,5 +34,5 @@ class TestVerification(unittest.TestCase):
 
 	def test_that_email_works(self):
 	    with self.client:
-	        response = self.client.post('login', { username: 'James', password: '007' })
-			assertEquals(current_user.username, 'James')
+	        response = self.client.post('login', { username: 'steve', password: '1234' })
+			assertEquals(current_user.username, 'steve')
