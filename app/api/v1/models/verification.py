@@ -32,9 +32,9 @@ class Verification:
 		return res
 
 
-	def is_incident_payload(self,items):
-		res = self.is_incident_payload(items,['title','type','location','status','Images','Videos','comment'])
-		return res
+	# def is_incident_payload(self,items):
+	# 	res = self.is_incident_payload(items,['title','type','location','status','Images','Videos','comment'])
+	# 	return res
 
 
 	def is_register_payload(self,items):
