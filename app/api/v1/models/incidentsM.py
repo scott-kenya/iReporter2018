@@ -1,7 +1,6 @@
 from flask import Flask 
 from flask_restplus import Namespace, fields, reqparse
 
-from .verification import Verification
 
 incidents = []
 
@@ -49,7 +48,7 @@ parser.add_argument('Title',
                     type=str,
                     required=True,
                     location='json',
-                    help="This field cannot be left blank or Bad choice: {error_msg}"
+                    help="This field is required. You can not skip it.: {error_msg}"
                     )
 
 
@@ -69,7 +68,7 @@ parser.add_argument('comment',
                     )
 
 
-parser.add_argument('Videos',
+parser.add_argument('videos',
                     type=str,
                     required=True,
                     location='json',
@@ -77,7 +76,7 @@ parser.add_argument('Videos',
                     )
 
 
-parser.add_argument('Images',
+parser.add_argument('images',
                     type=str,
                     required=True,
                     location='json',

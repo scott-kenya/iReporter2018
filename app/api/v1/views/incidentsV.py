@@ -19,8 +19,24 @@ class Incident(Resource):
         args = parser.parse_args()
         new_flag = incident_namespace.payload
         new_flag['id'] = len(incidents) + 1
-        incidents.append(new_flag)
-        return {'output': 'Incident is added', 'data': [new_flag]}, 201
+        if new_flag["Title"] == "":
+            return {"error" : "Title can not be empty"}
+        if new_flag["status"] == "":
+            return {"error" : "This field can not be empty"}
+        if new_flag["comment"] == "":
+            return {"error" : "This field can not be empty"}
+        if new_flag["location"] == "":
+            return {"error" : "This field can not be empty"}
+        if new_flag["type"] == "":
+            return {"error" : "This field can not be empty"}
+        if new_flag["Title"] == "":
+            return {"error" : "This field can not be empty"}
+        
+
+        else:
+            incidents.append(new_flag)
+            return {'output': 'Incident is added', 'data': [new_flag]}, 201
+
 
 
 
