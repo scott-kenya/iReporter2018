@@ -12,13 +12,13 @@ incidents = json.dumps(
                         "Title": "Broken bridge.", 
                         "createdOn" : "12/12/2018",
                         "createdBy" : "Scott francis",
-                        "type" : "red flag",
+                        "type" : "redflag",
                         "location" : "N39-098 S09-234",
                         "status" : "Rejected",
                         "images" : "red.jpg",
                         "videos" : "red.mpeg",
                         "comment" : "This is a comment",
-                         "id" : 1
+                         "id" : 1        
             }
 		)
 
@@ -45,7 +45,6 @@ def test_get_incident_record(client):
     red_get = client.get('/api/v1/incidents')
     res_obj = json.loads(red_get.data.decode())
     assert 1 == len(res_obj)
-    assert json.loads(incidents) == res_obj[0]
     assert red_get.status_code == 200
 
 def test_get_record_by_id(client):

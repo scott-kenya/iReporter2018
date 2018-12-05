@@ -5,10 +5,11 @@ from .verification import Verification
 
 user_accounts = [{'id':'0','fname': 'scott', 'lname': 'francis','othernames':'admin','email': 'scott@gmail.com','password': '1234','username':'admin','isAdmin':'True','phoneNumber':'123456789'}]
 
+rex = 'super-secret'
 
 class UserAccounts(Verification):
 	"""
-	class for user accounts
+	class for user accounts verification
 	"""
 	def __init__(self,items):
 		self.items = items
@@ -33,7 +34,7 @@ class UserAccounts(Verification):
 	def login(self):
 		for user_account in user_accounts:
 			if user_account.get('email') == self.items['email']:
-				token = jwt.encode({'id':user_account['id']},'qazxswedc',algorithm='HS256').decode('UTF-8')
+				token = jwt.encode({'id':user_account['id']},'rex',algorithm='HS256').decode('UTF-8')
 				return [{'message': 'Login successful'},{'token':token}]
 		return {'output': 'email or password invalid'},406
 
@@ -41,7 +42,7 @@ class UserAccounts(Verification):
 	def check_register_input(self):
 		strings = [self.items['fname'],self.items['lname'],self.items['othernames'],
 		self.items['email'],self.items['phoneNumber'],self.items['password'],self.items['isAdmin'],self.items['username']]
-		keys = ['first name', 'last_name', 'othernames', 'email', 'password','username','isAdmin']
+		keys = ['fname', 'lname', 'othernames', 'email', 'password','username','isAdmin']
 		payload = self.is_register_payload(self.items)
 		if payload is False:
 			return {'output':'invalid payload'},406
@@ -61,5 +62,5 @@ class UserAccounts(Verification):
 	@classmethod
 	def get_id(cls):
 		token = request.headers['X-API-KEY']
-		userId = token = jwt.decode(token,'qazxswedc',algorithms=['HS256']),401
+		userId = token = jwt.decode(token,'rex',algorithms=['HS256']),401
 		return userId
