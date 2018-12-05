@@ -1,5 +1,5 @@
 from flask import Flask 
-from flask_restplus import Namespace, fields
+from flask_restplus import Namespace, fields, reqparse
 
 from .verification import Verification
 
@@ -10,7 +10,7 @@ incident_namespace = Namespace('Incident', description='Incidents v1 Endpoint')
 incident_model = incident_namespace.model('Incident',{
 
                     'id': fields.Integer(required=True),
-                    'title': fields.String(required=True),
+                    'Title': fields.String(required=True),
                     'createdOn': fields.String(required=True),
                     'status': fields.String(required=True),
                     'createdBy': fields.Integer(required=True),
@@ -30,9 +30,33 @@ incident_update = incident_namespace.model('Incident Update', {
 
 
 
+parser = reqparse.RequestParser(bundle_errors=True)
+parser.add_argument('type',
+                    type=str,
+                    required=True,
+                    choices=("redflag", "intervention"),
+                    help="This field cannot be left blank or Bad choice: {error_msg}"
+                    )
+
+parser.add_argument('location',
+                    type=str,
+                    required=True,
+                    #location='incident_model',
+                    help="This field cannot be left blank or Bad choice: {error_msg}"
+                    )
+
+parser.add_argument('Title',
+                    type=str,
+                    #required=True,
+                    location='incident_model',
+                    help="This field cannot be left blank or Bad choice: {error_msg}"
+                    )
+
+
+
 class Incidents(Verification):
   def __init__(self,items):
-    self.items = items
+    self.items = Incident
 
   def check_incident_post(self):
     input=self.is_incident_payload(self.items) 
@@ -52,8 +76,10 @@ class Incidents(Verification):
     for incident in incidents:
       if incident['title'] == self.items['title']:
         return {'output': 'An incident has be added'},201
+      # elif incident['title'] != self.items['title']:
+      #   return {'output':'invalid input'}
     incidents.append(self.items)
-    return {'output': 'product has added to database'},201
+    #return {'output': 'product has added to database'},201
 
   @classmethod
   def get_all_incident_records(cls):

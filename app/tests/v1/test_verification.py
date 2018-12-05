@@ -32,21 +32,7 @@ class TestVerification(unittest.TestCase):
 		test = self.obj.is_whitespace(['Road closure','Illegal structure'])
 		self.assertFalse(test)
 
-	
-
-	# # test correct product payload
-	# def test_is_incident_payload(self):
-	# 	payload=(items,['title','type','location','status','Images','Videos','comment'])
-	# 	test = self.obj.is_incident_payload(payload)
-	# 	self.assertTrue(test)
-
-	# # test incorrect payload
-	# def test_not_payload(self):
-	# 	payload = {'Title':'Broken bridge','createdOn':12/12/2019,'createdBy':'scott francis',
-	# 	'type':'redflag','location':'N32-345 E87-098','name': 'draft','images':'red.jpg',
-	# 	'videos':'red.mpeg','comments':'awesome'}
-	# 	test = self.obj.is_incident_payload(payload)
-	# 	self.assertFalse(test)
-
-if __name__ == '__main__':
-	unittest.main()
+	def test_that_email_works(self):
+	    with self.client:
+	        response = self.client.post('login', { username: 'James', password: '007' })
+			assertEquals(current_user.username, 'James')

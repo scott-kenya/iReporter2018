@@ -21,7 +21,7 @@ model_register = users_namespace.model('register new_user',{
 	'password': fields.String('new_user\'s password'),
 	'isAdmin': fields.String('new_user\'s isAdmin'),
 	'phoneNumber': fields.String('new_user\'s phoneNumber'),
-	'usename' : fields.String('new_user\'s usename')
+	'username' : fields.String('new_user\'s username')
 	})
 
 @users_namespace.route('/login')
@@ -37,7 +37,7 @@ class Login(Resource):
 
 @users_namespace.route('/register')
 class RegisterUser(Resource):
-	#@token_required
+	@token_required
 	@users_namespace.doc(security='apikey')
 	@users_namespace.expect(model_register,validate=True)
 	def post(self):
